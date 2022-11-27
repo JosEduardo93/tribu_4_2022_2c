@@ -5,6 +5,7 @@ import { useState } from "react";
 //   BsFillCaretLeftFill,
 //   BsCircleFill,
 // } from "react-icons/bs";
+import { FiUser, FiClock } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { ImMoveUp } from "react-icons/im";
@@ -42,62 +43,91 @@ function Project({ project, editSelected, setEditSelected }) {
                             <div className={styles.titleSection}>
                                 {project.name}
                             </div>
-                            <div
-                                onClick={() => setEscalarSelected(true)}
-                                className={styles.escalar}
-                            >
-                                Escalar ticket
-                                <ImMoveUp size={"1.5vw"} color={"white"} />
-                            </div>    
-                            <div className={styles.descripcion}>{project.description}</div>
-                            <div className={styles.footerSection}>
-                            <div className={styles.marginLeft}>"{project.assignedClient}"</div>
+                        </div>
+                        <div className={styles.descripcion}>
+                            {project.description}
+                        </div>
+                        <div className={styles.footerSection}>
+                        <div className={styles.marginLeft}>"{project.assignedClient}"</div>
                             <div className={styles.marginLeft}>-</div>
                             <div className={styles.marginLeft}>
-                                Iniciado el {parseDate(project.idealInitDate)}
+                                Inicia {parseDate(project.idealInitDate)}
                             </div>
                             <div className={styles.marginLeft}>-</div>
                             <div className={styles.marginLeft}>
-                                Finalización esperada {parseDate(project.idealEndDate)}
+                                Finaliza {parseDate(project.idealEndDate)}
                             </div>
-                            </div>
-                            <div className={styles.sectionTwo}>
-                                <div className={styles.estado + " " + getState(project.status)}>
-                                    {project.status}
-                                </div>
-                            </div>
-                            <div onClick={() => {
-                                setEditSelected(true);
-                                }}
-                                className={
-                                    editSelected ? styles.edit + " " + styles.selected : styles.edit
-                            }>
-                                <MdEdit
-                                    size={"1.5vw"}
-                                    color={editSelected ? "white" : "rgba(0,53,108,1)"}
-                                />
-                            </div>
-                            {editSelected ? (
-                                <div className={styles.editSelected}>
-                                    <div
-                                        className={styles.editCancel}
-                                        onClick={() => setEditSelected(false)}
-                                    >
-                                        <IoClose size={"2vw"} color={"white"} />
-                                    </div>
-                                    <div className={styles.editConfirm}>
-                                        <HiCheck size={"2vw"} color={"white"} />
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className={styles.delete}>
-                                    <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
-                                </div>
-                            )}
                         </div>
                     </div>
-                </div>        
-            </div>     
+                    <div className={styles.sectionTwo}>
+                        <div className={styles.estado + " " + getState(project.status)}>
+                            {project.status}
+                        </div>
+                        <div className={styles.item}>
+                            <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+                            Agregar lider proyecto
+                        </div>
+                        <div className={styles.item}>
+                            <FiClock size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+                            {project.invertedHours}
+                        </div>
+                    </div>
+                </div>
+                <div onClick={() => {
+                    setEditSelected(true);
+                    }}
+                    className={
+                        editSelected ? styles.edit + " " + styles.selected : styles.edit
+                    }
+                >
+                    <MdEdit
+                        size={"1.5vw"}
+                        color={editSelected ? "white" : "rgba(0,53,108,1)"}
+                    />
+                </div>
+                {editSelected ? (
+                    <div className={styles.editSelected}>
+                        <div
+                        className={styles.editCancel}
+                        onClick={() => setEditSelected(false)}
+                        >
+                            <IoClose size={"2vw"} color={"white"} />
+                        </div>
+                        <div className={styles.editConfirm}>
+                        <HiCheck size={"2vw"} color={"white"} />
+                        </div>
+                    </div>
+                ) : (
+                    <div className={styles.delete}>
+                        <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+                    </div>
+                )}
+            </div>
+            {escalarSelected && (
+                <div className={styles.escalarSelectedContainer}>
+                    <div className={styles.escalarSelected}>
+                        <div className={styles.selection + " " + styles.item1}>
+                            <div className={styles.marginLeftEscalar}>Área</div>
+                            
+                        </div>
+                    <div className={styles.selection + " " + styles.item2}>
+                        <div className={styles.marginLeftEscalar}>Recurso</div>
+                            
+                        </div>
+                    </div>
+                    <div className={styles.editSelected + " " + styles.escalarHeight}>
+                        <div
+                            onClick={() => setEscalarSelected(false)}
+                            className={styles.editCancel}
+                        >
+                            <IoClose size={"2vw"} color={"white"} />
+                        </div>
+                        <div className={styles.editConfirm}>
+                            <HiCheck size={"2vw"} color={"white"} />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
