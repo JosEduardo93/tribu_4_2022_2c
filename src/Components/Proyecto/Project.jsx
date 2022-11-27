@@ -11,6 +11,7 @@ import { IoClose } from "react-icons/io5";
 import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
+import ProjectSelect from "./ProjectSelect";
 
 function Project({ project, editSelected, setEditSelected }) {
     const parseDate = (fecha) => {
@@ -108,11 +109,28 @@ function Project({ project, editSelected, setEditSelected }) {
                     <div className={styles.escalarSelected}>
                         <div className={styles.selection + " " + styles.item1}>
                             <div className={styles.marginLeftEscalar}>Área</div>
-                            
+                            <ProjectSelect
+                                placeHolder={"Seleccione un área"}
+                                options={[
+                                { value: "Marketing", label: "Marketing" },
+                                { value: "Desarollo", label: "Desarollo" },
+                                { value: "Recursos Humanos", label: "Recursos Humanos" },
+                                { value: "Administración", label: "Administración" },
+                                ]}
+                                style={styles.selectItem}
+                            />
                         </div>
                     <div className={styles.selection + " " + styles.item2}>
                         <div className={styles.marginLeftEscalar}>Recurso</div>
-                            
+                        <ProjectSelect
+                            placeHolder={"Seleccione un recurso"}
+                            options={[
+                            { value: "Recurso 1", label: "Recurso 1" },
+                            { value: "Recurso 2", label: "Recurso 2" },
+                            { value: "Recurso 3", label: "Recurso 3" },
+                            ]}
+                            style={styles.selectItem}
+                        />
                         </div>
                     </div>
                     <div className={styles.editSelected + " " + styles.escalarHeight}>
